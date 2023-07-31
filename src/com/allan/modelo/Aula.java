@@ -12,6 +12,16 @@ public class Aula implements Comparable<Aula> {
         this.duracao = duracao;
     }
 
+    @Override
+    public String toString() {
+        return "Aula " + this.numero + ": " + this.titulo;
+    }
+
+    @Override
+    public int compareTo(Aula outraAula) {
+        return this.numero.compareTo(outraAula.getNumero());
+    }
+
     public String getTitulo() {
         return titulo;
     }
@@ -23,15 +33,4 @@ public class Aula implements Comparable<Aula> {
     public int getDuracao() {
         return duracao;
     }
-
-    @Override
-    public String toString() {
-        return "Aula " + this.numero + ": " + this.titulo;
-    }
-
-    @Override
-    public int compareTo(Aula outraAula) {
-        return this.numero.compareTo(outraAula.getNumero());
-    }
-
 }

@@ -67,4 +67,8 @@ public class Curso {
     public Set<Aluno> getAlunos() {
         return Collections.unmodifiableSet(alunos);
     }
+
+    public Map<Integer, Aluno> getBuscador() {
+        return Collections.unmodifiableMap(buscador);
+    }
 }
