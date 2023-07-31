@@ -26,7 +26,7 @@ public class Aula implements Comparable<Aula> {
 
     @Override
     public String toString() {
-        return "com.allan.modelo.Aula " + numero + ": " + titulo;
+        return "Aula " + this.numero + ": " + this.titulo;
     }
 
     @Override

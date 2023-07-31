@@ -1,8 +1,13 @@
 package com.allan.modelo;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.ArrayList;
+import java.util.Set;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.HashMap;
+
 
 public class Curso {
 
@@ -10,6 +15,8 @@ public class Curso {
     private String instrutor;
     private int duracao;
     private List<Aula> aulas = new ArrayList<>();
+    private Set<Aluno> alunos = new HashSet<>();
+    private Map<Integer, Aluno> buscador = new HashMap<>();
 
     public Curso(String nome, String instrutor) {
         this.nome = nome;
@@ -18,18 +25,27 @@ public class Curso {
 
     public void adicionar(Aula aula) {
         this.aulas.add(aula);
-        duracao += aula.getDuracao();
+        this.duracao += aula.getDuracao();
         ordernarAula(aula);
     }
 
+    public void matricular(Aluno aluno) {
+        alunos.add(aluno);
+        buscador.put(aluno.getMatricula(), aluno);
+    }
+
+    public Aluno buscarAluno(int matricula) {
+        return buscador.get(matricula);
+    }
+
     private void ordernarAula(Aula aula) {
-        aulas.forEach(a -> a.getNumero().compareTo(aula.getNumero()));
+        this.aulas.forEach(a -> a.getNumero().compareTo(aula.getNumero()));
         Collections.sort(aulas);
     }
 
     @Override
     public String toString() {
-        return "com.allan.modelo.Curso: " + nome + ", tempo total: " + duracao;
+        return "Curso: " + this.nome + ", tempo total: " + this.duracao;
     }
 
     public String getNome() {
@@ -46,5 +62,9 @@ public class Curso {
 
     public List<Aula> getAulas() {
         return Collections.unmodifiableList(aulas);
+    }
+
+    public Set<Aluno> getAlunos() {
+        return Collections.unmodifiableSet(alunos);
     }
 }
